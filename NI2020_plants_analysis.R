@@ -93,7 +93,7 @@ if(downloadGBIFData){
   # the data is ready for downloading (progress can be checked on GBIF profile site)
   
   # Download data
-  path <- 'C:/Users/chloe.nater/OneDrive - NINA//Documents/Projects/NaturIndeks/Karplanter_2021/GBIF_Data'
+  path <- '/data/P-Prosjekter//41201612_naturindeks_2021_2023_database_og_innsynslosning/Karplanter_Dataflyt/GBIF_Data'
   occ_download_get(key = download_key$key, path = path)
   
   # Citation - copy into documentation
@@ -108,13 +108,9 @@ if(downloadGBIFData){
   # Get the occurrence.txt file in as a dataframe (using import from rio)
   sp <- import(unzip(download_path, files = "occurrence.txt"), header = T, sep = "\t")
   
-  # Save the data frame as an RData object
-  #save(sp, file = 'occurrence.RData')
-  
 }else{
   # Data import from downloaded occurrence file
-  sp <- import("occurrence.txt", header = T, sep = "\t") # Dysfunctional
-  #load('occurrence.RData')
+  sp <- import("occurrence.txt", header = T, sep = "\t")
 }
 
 dim(sp)
