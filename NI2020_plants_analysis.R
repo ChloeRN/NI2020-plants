@@ -266,9 +266,8 @@ for(j in 1:length(species)){
 
 save(gam.results, file = "Results/gam.results.all.gamma3.RData")
 
-# Removing no longer required objects
-rm(d, m, training_data)
-
+# Clear workspace
+rm(list = setdiff(ls(), 'species'))
 
 ################################################
 # Prediction: NI indicator value estimation
@@ -284,7 +283,7 @@ values(x) <- xy[,1]
 values(y) <- xy[,2]
 NIGAM_All.list <- list()
 pdf("Results/GAMplotsMunicAll.pdf")
-# load("Results/gam.results.all.gamma3")  # Uncomment to load results from previous steps, if entire script is not run continuously
+# load("Results/gam.results.all.gamma3.RData")  # Uncomment to load results from previous steps, if entire script is not run continuously
 for(j in 1:length(species)){
   print(species[j])
   NIGAM_All.list[[j]] <- list()
