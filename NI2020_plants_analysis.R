@@ -65,8 +65,12 @@ if(retrieveOldData){
 # https://gbif-europe.github.io/nordic_oikos_2018_r/s3_gbif_demo/3.x_async_download_gbif.Rmd
 # This allows downloading larger data sets, and citation of the download with a single doi. 
 
-### Set switch for (re-)download of GBIF data
+# Set switch for (re-)download of GBIF data
 downloadGBIFData <- FALSE
+
+# Set path for raw GBIF data
+#path <- '/data/P-Prosjekter/41201612_naturindeks_2021_2023_database_og_innsynslosning/Karplanter_Dataflyt/GBIF_Data' # Server
+path <- 'P:/41201612_naturindeks_2021_2023_database_og_innsynslosning/Karplanter_Dataflyt/GBIF_Data' # Local
 
 # Download all vascular plants (if necessary)
 if(downloadGBIFData){
@@ -93,7 +97,6 @@ if(downloadGBIFData){
   # the data is ready for downloading (progress can be checked on GBIF profile site)
   
   # Download data
-  path <- '/data/P-Prosjekter//41201612_naturindeks_2021_2023_database_og_innsynslosning/Karplanter_Dataflyt/GBIF_Data'
   occ_download_get(key = download_key$key, path = path)
   
   # Citation - copy into documentation
@@ -106,11 +109,12 @@ if(downloadGBIFData){
   archive_files
   
   # Get the occurrence.txt file in as a dataframe (using import from rio)
-  sp <- import(unzip(download_path, files = "occurrence.txt"), header = T, sep = "\t")
+  #sp <- import(unzip(download_path, files = "occurrence.txt"), header = T, sep = "\t")
+  sp <- import(unzip(download_path, files = "occurrence.txt"), header = T, sep = "\t", exdir = path)
   
 }else{
   # Data import from downloaded occurrence file
-  sp <- import("occurrence.txt", header = T, sep = "\t")
+  sp <- import(paste0(path, "/occurrence.txt"), header = T, sep = "\t")
 }
 
 dim(sp)
