@@ -35,8 +35,8 @@ NIcalc::getToken(username = myUserName_NIdb,
                  url = "https://www8.nina.no/NaturindeksNiCalc")#source('species.r')
 
 ### Indicator species names
-art <- c("alm","fjellvalmue","greplyng","issoleie","kusymre","myrtelg","olavsstake","prestekrage",
-         "purpurlyng","sennegras","solblom","sveltstarr","engmarihand","hvitmyrak","brunmyrak","smalsoldogg","dikesoldogg")
+indicators <- c("Alm","Fjellvalmue","Greplyng","Issoleie","Kusymre","Myrtelg","Olavsstake","Prestekrage",
+         "Purpurlyng","Sennegras","Solblom","Sveltstarr","Engmarihand","Hvitmyrak","Brunmyrak","Smalsoldogg","Dikesoldogg")
 species <- c("Ulmus glabra","Papaver radicatum","Kalmia procumbens","Ranunculus glacialis","Primula vulgaris",
              "Thelypteris palustris","Moneses uniflora","Leucanthemum vulgare","Erica cinerea","Carex vesicaria",
              "Arnica montana","Carex pauciflora","Dactylorhiza incarnata","Rhynchospora alba","Rhynchospora fusca",
