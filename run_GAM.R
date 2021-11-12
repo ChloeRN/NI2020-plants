@@ -6,8 +6,9 @@ run_GAM <- function(species, save = TRUE){
 
   for(j in 1:length(species)){
       
-    cat(species[j],"\n")
-      
+    #cat(species[j],"\n")
+    message(paste0("Fitting GAM for ", species[j], " ..."))
+     
     # Training data for species from GBIF, see NI 2020 plants dataprep.r
     load(paste("Data/Regression data/", species[j], "_training_data_all.RData", sep=""))
     d <- training_data[, c("Y", "x", "y", "year", "logS")]
@@ -19,4 +20,6 @@ run_GAM <- function(species, save = TRUE){
   if(save){
     save(gam.results, file = "Results/gam.results.all.gamma3.RData")
   }
+  
+  return(gam.results)
 }

@@ -19,7 +19,7 @@ build_TrainingData <- function(GBIF_data, min.year, max.year, year.interval, sav
   
   ## Remove observations with missing dates and/or coordinates 
   # NOTE: shouldn't be necessary when "has coordinate" = TRUE, but quite a few long and lat are missing
-  GBIF_data <- GBIF_data[complete.cases(sp[, c("year", "month", "day", "decimalLongitude", "decimalLatitude")]), ]
+  GBIF_data <- GBIF_data[complete.cases(GBIF_data[, c("year", "month", "day", "decimalLongitude", "decimalLatitude")]), ]
   
   ## Convert lat-long coordinates to coordinate system of Norway raster
   occ_points <- data.frame(x = GBIF_data$decimalLongitude, y = GBIF_data$decimalLatitude)
