@@ -4,24 +4,26 @@ create_DistObjects <- function(species, save){
   ## Load saved data if not present
   
   # Old indicator data
-  if(!exists(oldIndicatorData)){
-    load("oldIndicatorData")
+  if(!exists("oldIndicatorData")){
+    load("oldIndicatorData.RData")
     message('Old indicator data loaded from file.')
   }
   
   # New indicator data
-  if(!exists(newIndicatorData)){
-    load("newIndicatorData")
+  if(!exists("newIndicatorData")){
+    load("newIndicatorData.RData")
     message('New indicator data loaded from file.')
   }
   
   ## Set up structure for updated indicator data
   updatedIndicatorData <- oldIndicatorData
   
+  message("Assembling updated NI data for:")
+  
   ## Create distribution objects for each species
   for(j in 1:length(species)){
     
-    print(species[j])
+    message(species[j])
     
     d <- newIndicatorData[[j]]$indicatorValues
     myData <- data.frame(estimatedStates = d$verdi,

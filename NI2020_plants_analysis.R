@@ -278,7 +278,7 @@ rm(list = setdiff(ls(), 'species'))
 ################################################
 
 # GAM predictions: municipality maps for specific NI years
-kommune.poly <- readOGR(dsn = "Data/Shapefiles", layer = "Norway municipalities", encoding = "")
+kommune.poly <- readOGR(dsn = "Data/Shapefiles", layer = "Norway municipalities", use_iconv = TRUE, encoding = "UTF-8")
 norway <- raster("Data/Raster/Norway.tif")  # Background raster of Norway (all values = 1)
 year <- c(1900, 1950, 1990, 2000, 2010, 2014, 2019)
 xy <- coordinates(norway)
@@ -299,12 +299,12 @@ for(j in 1:length(species)){
     p <- norway
     pred <- predict(gam.results[[j]], pred.dat, se.fit = TRUE, type = "response") # The ordinary raster prediction does not always work: p <- predict(pred.ras, gam.results[[j]], type = "response")
     values(p) <- as.vector(pred$fit)
-    p.poly <- extract(p, kommune.poly, sp = TRUE, fun = mean, na.rm = T, weights = TRUE, normalizeWeights = TRUE)
+    p.poly <- raster::extract(p, kommune.poly, sp = TRUE, fun = mean, na.rm = T, weights = TRUE, normalizeWeights = TRUE)
     b <- seq(0, 0.1, by = 0.001)
     n <- length(b)
     plot(p.poly, col = rev(terrain.colors(n-1))[raster::cut(p.poly$Norway, breaks = b)], main = paste(species[j], year[i]))
     values(p) <- as.vector(pred$se.fit)
-    p.poly.se <- extract(p, kommune.poly, sp = TRUE, fun = mean, na.rm = T, weights = TRUE, normalizeWeights = TRUE)
+    p.poly.se <- raster::extract(p, kommune.poly, sp = TRUE, fun = mean, na.rm = T, weights = TRUE, normalizeWeights = TRUE)
     NIGAM_All.list[[j]][[i]] <- list(p = p.poly, p.se = p.poly.se)
   }
 }
