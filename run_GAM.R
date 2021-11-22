@@ -11,6 +11,8 @@ run_GAM <- function(species, save = TRUE){
      
     # Training data for species from GBIF, see NI 2020 plants dataprep.r
     load(paste("Data/Regression data/", species[j], "_training_data_all.RData", sep=""))
+    #load(paste("Data/Regression data/", species[j], "_training_data_all", sep=""))
+    
     d <- training_data[, c("Y", "x", "y", "year", "logS")]
     m <- gam(Y ~ ti(x) + ti(y) + ti(year) + ti(x, year) + ti(y, year),
                data = d, gamma = 3, family = poisson, offset = logS, select = TRUE)
