@@ -1,4 +1,23 @@
-# GAM predictions: municipality maps for specific NI years
+#' Make spatio-temporal occurrence predictions from GAM fits
+#'
+#' This function uses the GAM fits to make occurrence predictions per 
+#' municipality for each species-year combination. 
+#' 
+#' @param species character string or vector of character strings containing
+#' the latin name of the species for which to make predictions
+#' @param year vector of years for which to make predictions
+#' @param plot.pdf logical, default = `TRUE`. Whether or not to generate and
+#' save pdf plots of predictions
+#' @param save logical, default = `FALSE`. If `TRUE`, model fits for all 
+#' species are saved in the subfolder Results as `NIGAM_All.list.RData`.
+#'
+#' @return A list containing for each `species` and `year` the mean and standard
+#' deviation of predicted occurrence at the municipality level (stored as class
+#'  `SpatialPolygonsDataFrame`).
+#' @export
+#'
+#' @examples
+#' 
 predict_GAM <- function(species, year, plot.pdf = TRUE, save = FALSE){
   
   ## Load polygon for Norwegian counties

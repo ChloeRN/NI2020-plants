@@ -65,7 +65,7 @@ if(downloadOldNIData){
 
 ## Execute function for setting up download key and requesting download
 if(downloadGBIFData){
- #download_key <- getKey_GBIF()
+ download_key <- getKey_GBIF()
  message("Download key retrieved.")
  message("Wait until your GBIF download is ready (typically within 15 minutes, but can take up to 3 hours).")
  message("You should receive an email confirmation once the download is ready.")
@@ -99,7 +99,7 @@ max.year <- 2020
 year.interval <- 5
 
 ## Execute function for building training data
-build_TrainingData(GBIF_data, min.year, max.year, year.interval, save.unfiltered = TRUE)
+build_TrainingData(GBIF_data, species, min.year, max.year, year.interval, save.unfiltered = TRUE)
 
 ## Declutter workspace
 rm(list = setdiff(ls(), 'species'))

@@ -1,4 +1,22 @@
-# Build data frame with new NI indicator values (GAM predictions per municipality)
+#' Calculate and assemble new NI indicator values from GAM predictions
+#'
+#' This function calculates scaled indicator values for each species- and year-
+#' combination at the municipality level. 
+#' The reference value used for scaling indicator values is extracted from
+#' previously downloaded old indicator data (as stored in NI database) via the
+#' label `Referanseverdi`.
+#' 
+#' @param species character string or vector of character strings containing
+#' the latin name of the species for which to calculate indicator values
+#' @param year vector of years for which to calculate indicator values
+#' @param save logical, default = `FALSE`. If `TRUE`, new indicator data will be
+#' saved in the working directory as `newIndicatorData.RData`.
+#'
+#' @return A list containing scaled indicator values and associated information
+#'  for each municipality per `species` and `year`.
+#' @export
+#'
+#' @examples
 calculate_IndicatorValues <- function(species, year, save = FALSE){
   
   ## Load saved data if not present

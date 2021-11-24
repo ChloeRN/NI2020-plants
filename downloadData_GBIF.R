@@ -1,14 +1,26 @@
-### Download occurrence data from GBIF
-# This part is based on the extensively commented instructions for
-# asynchronous downloading of GBIF data by Anders Finstad, available here:
-# https://gbif-europe.github.io/nordic_oikos_2018_r/s3_gbif_demo/3.x_async_download_gbif.Rmd
-# This allows downloading larger data sets, and citation of the download with a single doi. 
-
-# Set up a user profile at GBIF (https://www.gbif.org), then
-# run this once to store your GBIF user credentials to your R session 
- 
-# NOTE: This takes a while to run, and a notification email will be sent once
-# the data is ready for downloading (progress can be checked on GBIF profile site)
+#' Download requested plant occurrence data for Norway from GBIF
+#' 
+#' This function downloads and unzips GBIF data that has been previously 
+#' requested under a specified download key into a user-specified directory.
+#' 
+#' The procedure is based on the extensively commented instructions for
+#' asynchronous downloading of GBIF data by Anders Finstad, available here:
+#' https://gbif-europe.github.io/nordic_oikos_2018_r/s3_gbif_demo/3.x_async_download_gbif.Rmd
+#' This allows downloading larger data sets, and citation of the download with 
+#' a single doi. 
+#' 
+#' Note that after running `getKey_GBIF` to obtain the download key, you need 
+#' to wait until GBIF has readied your dataset before you run `downloadData_GBIF`. 
+#' 
+#' @param key A character string representing a download key. Obtained via the
+#' `getKey_GBIF` function, but can also be set manually if required.
+#' 
+#' @param path Directory into which GBIF data should be downloaded. 
+#'
+#' @return A dataframe containing downloaded GBIF occurrence records.
+#' @export 
+#'
+#' @examples
 
 downloadData_GBIF <- function(key, path){
   
@@ -28,4 +40,5 @@ downloadData_GBIF <- function(key, path){
   
   ## Unzip the occurrence.txt data file into the working directory and import into R
   GBIF_data <- import(unzip(download_path, files = "occurrence.txt"), header = T, sep = "\t")
+  return(GBIF_data)
 }

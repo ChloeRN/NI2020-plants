@@ -1,5 +1,25 @@
-
-build_TrainingData <- function(GBIF_data, min.year, max.year, year.interval, save.unfiltered = FALSE){
+#' Build training datasets for each species
+#'
+#' This function subsets, reformats, and rasterises occurrence and sampling data 
+#' for a (list of) species, and saves the resulting training data sets in the
+#' subfolder Data/Regression data.
+#'
+#' @param GBIF_data Data frame containing occurrence records downloaded from GBIF.
+#' @param species A character string or vector of character strings containing
+#' the latin name of the species for which to build a training data set.
+#' @param min.year Integer. Earliest year to include in training dataset.
+#' @param max.year Integer. Latest year to include in training dataset. 
+#' @param year.interval Integer. Length of the time interval (number of years) for which 
+#' to rasterize occurrence data. 
+#' @param save.unfiltered Logical, default = `FALSE`. If `TRUE`, unfiltered 
+#' raster data on occurrence and sampling is saved in the subfolder Data/Raster.
+#'
+#' @return None.
+#' @export
+#'
+#' @examples
+#' 
+build_TrainingData <- function(GBIF_data, species, min.year, max.year, year.interval, save.unfiltered = FALSE){
   
   # SUBSETTING AND COORDINATE REFORMATTING #
   #----------------------------------------#

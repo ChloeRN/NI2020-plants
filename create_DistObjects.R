@@ -1,5 +1,20 @@
-# Create distribution objects and format data for import to NI base (based on code from NIcalc vignette)
-create_DistObjects <- function(species, save){
+#' Create distribution objects and format data for import to NI base
+#'
+#' This function creates distribution objects that quantify uncertainty in 
+#' indicator calculations and prepares data for upload to the NI database. 
+#' 
+#' @param species character string or vector of character strings containing
+#' the latin name of the species for which to prepare data
+#' @param save logical, default = `FALSE`. If `TRUE`, indicator data will be
+#' saved in the working directory as `updatedIndicatorData.RData`.
+#'
+#' @return A list containing scaled indicator values and associated information,
+#' including specifications for custom distributions specifying uncertainty, for 
+#' each municipality per `species` and `year`.
+#' @export
+#'
+#' @examples
+create_DistObjects <- function(species, save = FALSE){
   
   ## Load saved data if not present
   
