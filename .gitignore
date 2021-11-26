@@ -1,0 +1,18 @@
+
+# Data files (raw and processed)
+occurrence.txt
+oldIndicatorData.RData
+newIndicatorData.RData
+newIndicatorData_RefYearOptions.RData
+updatedIndicatorData.RData
+Data/Raster/samp_ras_all.RData
+Data/Raster/occ_ras_list_all.RData
+Data/Raster/thumbs.db 
+
+# Folders
+.Rproj.user/
+Results/
+
+# History files
+.Rhistory
+.Rapp.history
