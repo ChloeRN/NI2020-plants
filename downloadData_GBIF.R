@@ -25,16 +25,16 @@
 downloadData_GBIF <- function(key, path){
   
   ## Download data
-  occ_download_get(key = download_key$key, path = path)
+  occ_download_get(key = key, path = path)
   
   ## Print and save data citation
-  data_citation <- paste0("GBIF Occurrence Download", download_key[2], "accessed via GBIF.org on", Sys.Date())
+  data_citation <- paste0("GBIF Occurrence Download ", key, " accessed via GBIF.org on ", Sys.Date())
   print(data_citation)
   writeLines(data_citation, paste0(path, "/GBIF_Data_Citation.txt"))
   
   ## Open data and extract into data frame
   # Get a list of the files within the archive by using "list=TRUE" in the unzip function
-  download_path <- paste0(path,"/",download_key$key,".zip")
+  download_path <- paste0(path,"/", key,".zip")
   archive_files <- unzip(download_path, files = "NULL", list = TRUE) 
   archive_files
   

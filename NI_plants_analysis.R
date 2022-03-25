@@ -83,11 +83,12 @@ if(downloadGBIFData){
   ## Move file from working directory into GBIF data folder
   fs::file_move("occurrence.txt", paste0(path, "/occurrence.txt"))
   
-}else{
-  
-  ## Import raw data from previously downloaded occurrence file
-  GBIF_data <- import(paste0(path, "/occurrence.txt"), header = T, sep = "\t")
 }
+  
+  
+## Import raw data from previously downloaded occurrence file
+GBIF_data <- import(paste0(path, "/occurrence.txt"), header = T, sep = "\t")
+
 
 #--------------------------------------------#
 # Build training data for each focal species #
